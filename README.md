@@ -26,22 +26,22 @@ $ npm i babel-core babel-cli babel-preset-es2015 babel-preset-react --save-dev
 $ npm i babel-plugin-transform-es2015-destructuring babel-plugin-transform-es2015-parameters babel-plugin-transform-object-rest-spread --save-dev
 $ npm i css-loader style-loader babel-loader --save-dev
 $ npm i react react-dom --save
-$ npm i react-router-dom redux react-redux --save
+$ npm i react-router-dom redux react-redux isomorphic-fetch --save
 ```
 
 Building the structure
 ```
 $ mkdir src
 $ mkdir src/components
-$ mkdir src/templates
+$ mkdir src/containers
 $ mkdir dist
 $ mkdir test
 $ touch .babelrc
 $ touch webpack.config.js
-$ touch src/index.jsx
+
 $ touch src/routes.jsx
 $ touch src/components/app.jsx
-$ touch src/templates/index.template.ejs
+$ touch src/containers/Root.jsx
 ```
 
 .babelrc:
@@ -61,7 +61,12 @@ webpack.config.js
 
 ```
 
-src/index.jsx
+### Template
+
+```
+$ mkdir src/templates
+$ touch src/templates/index.template.ejs
+```
 
 src/templates/index.template.ejs
 ```html
@@ -75,4 +80,28 @@ src/templates/index.template.ejs
     <div id='root'></div>
 </body>
 </html>
+```
+
+### Entry point
+
+```
+$ touch src/index.jsx
+```
+
+src/index.jsx
+```javascript
+import React from 'react';
+import { render } from 'react-dom';
+import Root from './containers/Root';
+
+render(
+  <Root/>,
+  document.getElementById('root')
+);
+```
+
+### Action Creators and Constants
+
+```
+$ touch src/actions.js
 ```
